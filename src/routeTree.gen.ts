@@ -9,38 +9,159 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProgressRouteImport } from './routes/progress'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ClassesRouteImport } from './routes/classes'
+import { Route as CertificatesRouteImport } from './routes/certificates'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClassClassIdRouteImport } from './routes/class.$classId'
+import { Route as ClassClassIdSessionRouteImport } from './routes/class.$classId.session'
+import { Route as ClassClassIdCompleteRouteImport } from './routes/class.$classId.complete'
 
+const ProgressRoute = ProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClassesRoute = ClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificatesRoute = CertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClassClassIdRoute = ClassClassIdRouteImport.update({
+  id: '/class/$classId',
+  path: '/class/$classId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClassClassIdSessionRoute = ClassClassIdSessionRouteImport.update({
+  id: '/session',
+  path: '/session',
+  getParentRoute: () => ClassClassIdRoute,
+} as any)
+const ClassClassIdCompleteRoute = ClassClassIdCompleteRouteImport.update({
+  id: '/complete',
+  path: '/complete',
+  getParentRoute: () => ClassClassIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/certificates': typeof CertificatesRoute
+  '/classes': typeof ClassesRoute
+  '/dashboard': typeof DashboardRoute
+  '/progress': typeof ProgressRoute
+  '/class/$classId': typeof ClassClassIdRouteWithChildren
+  '/class/$classId/complete': typeof ClassClassIdCompleteRoute
+  '/class/$classId/session': typeof ClassClassIdSessionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/certificates': typeof CertificatesRoute
+  '/classes': typeof ClassesRoute
+  '/dashboard': typeof DashboardRoute
+  '/progress': typeof ProgressRoute
+  '/class/$classId': typeof ClassClassIdRouteWithChildren
+  '/class/$classId/complete': typeof ClassClassIdCompleteRoute
+  '/class/$classId/session': typeof ClassClassIdSessionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/certificates': typeof CertificatesRoute
+  '/classes': typeof ClassesRoute
+  '/dashboard': typeof DashboardRoute
+  '/progress': typeof ProgressRoute
+  '/class/$classId': typeof ClassClassIdRouteWithChildren
+  '/class/$classId/complete': typeof ClassClassIdCompleteRoute
+  '/class/$classId/session': typeof ClassClassIdSessionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/certificates'
+    | '/classes'
+    | '/dashboard'
+    | '/progress'
+    | '/class/$classId'
+    | '/class/$classId/complete'
+    | '/class/$classId/session'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/certificates'
+    | '/classes'
+    | '/dashboard'
+    | '/progress'
+    | '/class/$classId'
+    | '/class/$classId/complete'
+    | '/class/$classId/session'
+  id:
+    | '__root__'
+    | '/'
+    | '/certificates'
+    | '/classes'
+    | '/dashboard'
+    | '/progress'
+    | '/class/$classId'
+    | '/class/$classId/complete'
+    | '/class/$classId/session'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CertificatesRoute: typeof CertificatesRoute
+  ClassesRoute: typeof ClassesRoute
+  DashboardRoute: typeof DashboardRoute
+  ProgressRoute: typeof ProgressRoute
+  ClassClassIdRoute: typeof ClassClassIdRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/progress': {
+      id: '/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof ProgressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/classes': {
+      id: '/classes'
+      path: '/classes'
+      fullPath: '/classes'
+      preLoaderRoute: typeof ClassesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certificates': {
+      id: '/certificates'
+      path: '/certificates'
+      fullPath: '/certificates'
+      preLoaderRoute: typeof CertificatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +169,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/class/$classId': {
+      id: '/class/$classId'
+      path: '/class/$classId'
+      fullPath: '/class/$classId'
+      preLoaderRoute: typeof ClassClassIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/class/$classId/session': {
+      id: '/class/$classId/session'
+      path: '/session'
+      fullPath: '/class/$classId/session'
+      preLoaderRoute: typeof ClassClassIdSessionRouteImport
+      parentRoute: typeof ClassClassIdRoute
+    }
+    '/class/$classId/complete': {
+      id: '/class/$classId/complete'
+      path: '/complete'
+      fullPath: '/class/$classId/complete'
+      preLoaderRoute: typeof ClassClassIdCompleteRouteImport
+      parentRoute: typeof ClassClassIdRoute
+    }
   }
 }
 
+interface ClassClassIdRouteChildren {
+  ClassClassIdCompleteRoute: typeof ClassClassIdCompleteRoute
+  ClassClassIdSessionRoute: typeof ClassClassIdSessionRoute
+}
+
+const ClassClassIdRouteChildren: ClassClassIdRouteChildren = {
+  ClassClassIdCompleteRoute: ClassClassIdCompleteRoute,
+  ClassClassIdSessionRoute: ClassClassIdSessionRoute,
+}
+
+const ClassClassIdRouteWithChildren = ClassClassIdRoute._addFileChildren(
+  ClassClassIdRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CertificatesRoute: CertificatesRoute,
+  ClassesRoute: ClassesRoute,
+  DashboardRoute: DashboardRoute,
+  ProgressRoute: ProgressRoute,
+  ClassClassIdRoute: ClassClassIdRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
