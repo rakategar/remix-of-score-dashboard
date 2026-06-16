@@ -14,9 +14,18 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ClassesRouteImport } from './routes/classes'
 import { Route as CertificatesRouteImport } from './routes/certificates'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InternalLoginRouteImport } from './routes/internal.login'
+import { Route as InternalDashboardRouteImport } from './routes/internal.dashboard'
 import { Route as ClassClassIdRouteImport } from './routes/class.$classId'
 import { Route as ClassClassIdSessionRouteImport } from './routes/class.$classId.session'
 import { Route as ClassClassIdCompleteRouteImport } from './routes/class.$classId.complete'
+import { Route as InternalProgramsAceBatch3IndexRouteImport } from './routes/internal.programs.ace-batch-3.index'
+import { Route as InternalProgramsAceBatch3StrategicNotesRouteImport } from './routes/internal.programs.ace-batch-3.strategic-notes'
+import { Route as InternalProgramsAceBatch3ReportsRouteImport } from './routes/internal.programs.ace-batch-3.reports'
+import { Route as InternalProgramsAceBatch3ObservationRouteImport } from './routes/internal.programs.ace-batch-3.observation'
+import { Route as InternalProgramsAceBatch3CoachingRouteImport } from './routes/internal.programs.ace-batch-3.coaching'
+import { Route as InternalProgramsAceBatch3ParticipantsIndexRouteImport } from './routes/internal.programs.ace-batch-3.participants.index'
+import { Route as InternalProgramsAceBatch3ParticipantsIdRouteImport } from './routes/internal.programs.ace-batch-3.participants.$id'
 
 const ProgressRoute = ProgressRouteImport.update({
   id: '/progress',
@@ -43,6 +52,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InternalLoginRoute = InternalLoginRouteImport.update({
+  id: '/internal/login',
+  path: '/internal/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternalDashboardRoute = InternalDashboardRouteImport.update({
+  id: '/internal/dashboard',
+  path: '/internal/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ClassClassIdRoute = ClassClassIdRouteImport.update({
   id: '/class/$classId',
   path: '/class/$classId',
@@ -58,6 +77,48 @@ const ClassClassIdCompleteRoute = ClassClassIdCompleteRouteImport.update({
   path: '/complete',
   getParentRoute: () => ClassClassIdRoute,
 } as any)
+const InternalProgramsAceBatch3IndexRoute =
+  InternalProgramsAceBatch3IndexRouteImport.update({
+    id: '/internal/programs/ace-batch-3/',
+    path: '/internal/programs/ace-batch-3/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InternalProgramsAceBatch3StrategicNotesRoute =
+  InternalProgramsAceBatch3StrategicNotesRouteImport.update({
+    id: '/internal/programs/ace-batch-3/strategic-notes',
+    path: '/internal/programs/ace-batch-3/strategic-notes',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InternalProgramsAceBatch3ReportsRoute =
+  InternalProgramsAceBatch3ReportsRouteImport.update({
+    id: '/internal/programs/ace-batch-3/reports',
+    path: '/internal/programs/ace-batch-3/reports',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InternalProgramsAceBatch3ObservationRoute =
+  InternalProgramsAceBatch3ObservationRouteImport.update({
+    id: '/internal/programs/ace-batch-3/observation',
+    path: '/internal/programs/ace-batch-3/observation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InternalProgramsAceBatch3CoachingRoute =
+  InternalProgramsAceBatch3CoachingRouteImport.update({
+    id: '/internal/programs/ace-batch-3/coaching',
+    path: '/internal/programs/ace-batch-3/coaching',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InternalProgramsAceBatch3ParticipantsIndexRoute =
+  InternalProgramsAceBatch3ParticipantsIndexRouteImport.update({
+    id: '/internal/programs/ace-batch-3/participants/',
+    path: '/internal/programs/ace-batch-3/participants/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InternalProgramsAceBatch3ParticipantsIdRoute =
+  InternalProgramsAceBatch3ParticipantsIdRouteImport.update({
+    id: '/internal/programs/ace-batch-3/participants/$id',
+    path: '/internal/programs/ace-batch-3/participants/$id',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,8 +127,17 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/progress': typeof ProgressRoute
   '/class/$classId': typeof ClassClassIdRouteWithChildren
+  '/internal/dashboard': typeof InternalDashboardRoute
+  '/internal/login': typeof InternalLoginRoute
   '/class/$classId/complete': typeof ClassClassIdCompleteRoute
   '/class/$classId/session': typeof ClassClassIdSessionRoute
+  '/internal/programs/ace-batch-3/coaching': typeof InternalProgramsAceBatch3CoachingRoute
+  '/internal/programs/ace-batch-3/observation': typeof InternalProgramsAceBatch3ObservationRoute
+  '/internal/programs/ace-batch-3/reports': typeof InternalProgramsAceBatch3ReportsRoute
+  '/internal/programs/ace-batch-3/strategic-notes': typeof InternalProgramsAceBatch3StrategicNotesRoute
+  '/internal/programs/ace-batch-3/': typeof InternalProgramsAceBatch3IndexRoute
+  '/internal/programs/ace-batch-3/participants/$id': typeof InternalProgramsAceBatch3ParticipantsIdRoute
+  '/internal/programs/ace-batch-3/participants/': typeof InternalProgramsAceBatch3ParticipantsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,8 +146,17 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/progress': typeof ProgressRoute
   '/class/$classId': typeof ClassClassIdRouteWithChildren
+  '/internal/dashboard': typeof InternalDashboardRoute
+  '/internal/login': typeof InternalLoginRoute
   '/class/$classId/complete': typeof ClassClassIdCompleteRoute
   '/class/$classId/session': typeof ClassClassIdSessionRoute
+  '/internal/programs/ace-batch-3/coaching': typeof InternalProgramsAceBatch3CoachingRoute
+  '/internal/programs/ace-batch-3/observation': typeof InternalProgramsAceBatch3ObservationRoute
+  '/internal/programs/ace-batch-3/reports': typeof InternalProgramsAceBatch3ReportsRoute
+  '/internal/programs/ace-batch-3/strategic-notes': typeof InternalProgramsAceBatch3StrategicNotesRoute
+  '/internal/programs/ace-batch-3': typeof InternalProgramsAceBatch3IndexRoute
+  '/internal/programs/ace-batch-3/participants/$id': typeof InternalProgramsAceBatch3ParticipantsIdRoute
+  '/internal/programs/ace-batch-3/participants': typeof InternalProgramsAceBatch3ParticipantsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,8 +166,17 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/progress': typeof ProgressRoute
   '/class/$classId': typeof ClassClassIdRouteWithChildren
+  '/internal/dashboard': typeof InternalDashboardRoute
+  '/internal/login': typeof InternalLoginRoute
   '/class/$classId/complete': typeof ClassClassIdCompleteRoute
   '/class/$classId/session': typeof ClassClassIdSessionRoute
+  '/internal/programs/ace-batch-3/coaching': typeof InternalProgramsAceBatch3CoachingRoute
+  '/internal/programs/ace-batch-3/observation': typeof InternalProgramsAceBatch3ObservationRoute
+  '/internal/programs/ace-batch-3/reports': typeof InternalProgramsAceBatch3ReportsRoute
+  '/internal/programs/ace-batch-3/strategic-notes': typeof InternalProgramsAceBatch3StrategicNotesRoute
+  '/internal/programs/ace-batch-3/': typeof InternalProgramsAceBatch3IndexRoute
+  '/internal/programs/ace-batch-3/participants/$id': typeof InternalProgramsAceBatch3ParticipantsIdRoute
+  '/internal/programs/ace-batch-3/participants/': typeof InternalProgramsAceBatch3ParticipantsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -99,8 +187,17 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/progress'
     | '/class/$classId'
+    | '/internal/dashboard'
+    | '/internal/login'
     | '/class/$classId/complete'
     | '/class/$classId/session'
+    | '/internal/programs/ace-batch-3/coaching'
+    | '/internal/programs/ace-batch-3/observation'
+    | '/internal/programs/ace-batch-3/reports'
+    | '/internal/programs/ace-batch-3/strategic-notes'
+    | '/internal/programs/ace-batch-3/'
+    | '/internal/programs/ace-batch-3/participants/$id'
+    | '/internal/programs/ace-batch-3/participants/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -109,8 +206,17 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/progress'
     | '/class/$classId'
+    | '/internal/dashboard'
+    | '/internal/login'
     | '/class/$classId/complete'
     | '/class/$classId/session'
+    | '/internal/programs/ace-batch-3/coaching'
+    | '/internal/programs/ace-batch-3/observation'
+    | '/internal/programs/ace-batch-3/reports'
+    | '/internal/programs/ace-batch-3/strategic-notes'
+    | '/internal/programs/ace-batch-3'
+    | '/internal/programs/ace-batch-3/participants/$id'
+    | '/internal/programs/ace-batch-3/participants'
   id:
     | '__root__'
     | '/'
@@ -119,8 +225,17 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/progress'
     | '/class/$classId'
+    | '/internal/dashboard'
+    | '/internal/login'
     | '/class/$classId/complete'
     | '/class/$classId/session'
+    | '/internal/programs/ace-batch-3/coaching'
+    | '/internal/programs/ace-batch-3/observation'
+    | '/internal/programs/ace-batch-3/reports'
+    | '/internal/programs/ace-batch-3/strategic-notes'
+    | '/internal/programs/ace-batch-3/'
+    | '/internal/programs/ace-batch-3/participants/$id'
+    | '/internal/programs/ace-batch-3/participants/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -130,6 +245,15 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   ProgressRoute: typeof ProgressRoute
   ClassClassIdRoute: typeof ClassClassIdRouteWithChildren
+  InternalDashboardRoute: typeof InternalDashboardRoute
+  InternalLoginRoute: typeof InternalLoginRoute
+  InternalProgramsAceBatch3CoachingRoute: typeof InternalProgramsAceBatch3CoachingRoute
+  InternalProgramsAceBatch3ObservationRoute: typeof InternalProgramsAceBatch3ObservationRoute
+  InternalProgramsAceBatch3ReportsRoute: typeof InternalProgramsAceBatch3ReportsRoute
+  InternalProgramsAceBatch3StrategicNotesRoute: typeof InternalProgramsAceBatch3StrategicNotesRoute
+  InternalProgramsAceBatch3IndexRoute: typeof InternalProgramsAceBatch3IndexRoute
+  InternalProgramsAceBatch3ParticipantsIdRoute: typeof InternalProgramsAceBatch3ParticipantsIdRoute
+  InternalProgramsAceBatch3ParticipantsIndexRoute: typeof InternalProgramsAceBatch3ParticipantsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -169,6 +293,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/internal/login': {
+      id: '/internal/login'
+      path: '/internal/login'
+      fullPath: '/internal/login'
+      preLoaderRoute: typeof InternalLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal/dashboard': {
+      id: '/internal/dashboard'
+      path: '/internal/dashboard'
+      fullPath: '/internal/dashboard'
+      preLoaderRoute: typeof InternalDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/class/$classId': {
       id: '/class/$classId'
       path: '/class/$classId'
@@ -189,6 +327,55 @@ declare module '@tanstack/react-router' {
       fullPath: '/class/$classId/complete'
       preLoaderRoute: typeof ClassClassIdCompleteRouteImport
       parentRoute: typeof ClassClassIdRoute
+    }
+    '/internal/programs/ace-batch-3/': {
+      id: '/internal/programs/ace-batch-3/'
+      path: '/internal/programs/ace-batch-3'
+      fullPath: '/internal/programs/ace-batch-3/'
+      preLoaderRoute: typeof InternalProgramsAceBatch3IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal/programs/ace-batch-3/strategic-notes': {
+      id: '/internal/programs/ace-batch-3/strategic-notes'
+      path: '/internal/programs/ace-batch-3/strategic-notes'
+      fullPath: '/internal/programs/ace-batch-3/strategic-notes'
+      preLoaderRoute: typeof InternalProgramsAceBatch3StrategicNotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal/programs/ace-batch-3/reports': {
+      id: '/internal/programs/ace-batch-3/reports'
+      path: '/internal/programs/ace-batch-3/reports'
+      fullPath: '/internal/programs/ace-batch-3/reports'
+      preLoaderRoute: typeof InternalProgramsAceBatch3ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal/programs/ace-batch-3/observation': {
+      id: '/internal/programs/ace-batch-3/observation'
+      path: '/internal/programs/ace-batch-3/observation'
+      fullPath: '/internal/programs/ace-batch-3/observation'
+      preLoaderRoute: typeof InternalProgramsAceBatch3ObservationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal/programs/ace-batch-3/coaching': {
+      id: '/internal/programs/ace-batch-3/coaching'
+      path: '/internal/programs/ace-batch-3/coaching'
+      fullPath: '/internal/programs/ace-batch-3/coaching'
+      preLoaderRoute: typeof InternalProgramsAceBatch3CoachingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal/programs/ace-batch-3/participants/': {
+      id: '/internal/programs/ace-batch-3/participants/'
+      path: '/internal/programs/ace-batch-3/participants'
+      fullPath: '/internal/programs/ace-batch-3/participants/'
+      preLoaderRoute: typeof InternalProgramsAceBatch3ParticipantsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal/programs/ace-batch-3/participants/$id': {
+      id: '/internal/programs/ace-batch-3/participants/$id'
+      path: '/internal/programs/ace-batch-3/participants/$id'
+      fullPath: '/internal/programs/ace-batch-3/participants/$id'
+      preLoaderRoute: typeof InternalProgramsAceBatch3ParticipantsIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -214,17 +401,21 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   ProgressRoute: ProgressRoute,
   ClassClassIdRoute: ClassClassIdRouteWithChildren,
+  InternalDashboardRoute: InternalDashboardRoute,
+  InternalLoginRoute: InternalLoginRoute,
+  InternalProgramsAceBatch3CoachingRoute:
+    InternalProgramsAceBatch3CoachingRoute,
+  InternalProgramsAceBatch3ObservationRoute:
+    InternalProgramsAceBatch3ObservationRoute,
+  InternalProgramsAceBatch3ReportsRoute: InternalProgramsAceBatch3ReportsRoute,
+  InternalProgramsAceBatch3StrategicNotesRoute:
+    InternalProgramsAceBatch3StrategicNotesRoute,
+  InternalProgramsAceBatch3IndexRoute: InternalProgramsAceBatch3IndexRoute,
+  InternalProgramsAceBatch3ParticipantsIdRoute:
+    InternalProgramsAceBatch3ParticipantsIdRoute,
+  InternalProgramsAceBatch3ParticipantsIndexRoute:
+    InternalProgramsAceBatch3ParticipantsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
