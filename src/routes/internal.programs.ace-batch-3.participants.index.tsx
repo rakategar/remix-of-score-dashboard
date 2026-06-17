@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Download, Eye, MessageSquare, FileText } from "lucide-react";
 import { InternalShell, Breadcrumbs } from "@/components/InternalShell";
 import { ALL_PARTICIPANTS, CATEGORY_BADGE } from "@/lib/internal-data";
+import { Avatar } from "@/components/Avatar";
 
 export const Route = createFileRoute("/internal/programs/ace-batch-3/participants/")({
   component: ParticipantsPage,
@@ -86,9 +87,7 @@ function ParticipantsPage() {
                     <td className="text-slate-400 text-sm text-center px-4 py-3">{p.no}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-medium ${p.color}`}>
-                          {p.initials}
-                        </div>
+                        <Avatar seed={`p-${p.id}`} initials={p.initials} colorClass={p.color} size={36} textClass="text-white text-sm font-medium" />
                         <div>
                           <div className="font-medium text-slate-900 text-sm">{p.full_name}</div>
                           <div className="text-xs text-slate-400">{p.placement}</div>

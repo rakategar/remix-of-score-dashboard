@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { InternalShell, Breadcrumbs } from "@/components/InternalShell";
 import { ALL_PARTICIPANTS, CATEGORY_BADGE } from "@/lib/internal-data";
 import { PRE_ASSESSMENT_DATA } from "@/lib/mock-data";
+import { Avatar } from "@/components/Avatar";
 
 export const Route = createFileRoute("/internal/programs/ace-batch-3/participants/$id")({
   component: ParticipantDetail,
@@ -60,9 +61,7 @@ function ParticipantDetail() {
 
       <div className="bg-white rounded-xl shadow-sm p-6 mb-5">
         <div className="flex items-start gap-4">
-          <div className={`w-14 h-14 ${p.color} text-white text-xl font-bold rounded-full flex items-center justify-center`}>
-            {p.initials}
-          </div>
+          <Avatar seed={`p-${p.id}`} initials={p.initials} colorClass={p.color} size={56} textClass="text-white text-xl font-bold" />
           <div className="flex-1">
             <h1 className="text-xl font-bold text-slate-900">{p.full_name}</h1>
             <p className="text-sm text-slate-500 mt-1">{p.placement} · {p.region}</p>

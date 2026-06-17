@@ -4,6 +4,7 @@ import { Plus, X } from "lucide-react";
 import { toast } from "sonner";
 import { InternalShell, Breadcrumbs } from "@/components/InternalShell";
 import { COACHING_SESSIONS, ALL_PARTICIPANTS } from "@/lib/internal-data";
+import { Avatar } from "@/components/Avatar";
 
 export const Route = createFileRoute("/internal/programs/ace-batch-3/coaching")({
   component: CoachingPage,
@@ -84,9 +85,7 @@ function CoachingPage() {
               <div className="p-5 flex flex-col md:flex-row gap-5 flex-1">
                 <div className="md:w-44 flex-shrink-0 md:border-r border-slate-100 md:pr-5">
                   <div className="flex items-center gap-2">
-                    <div className={`w-10 h-10 ${s.color} text-white text-sm font-bold rounded-full flex items-center justify-center`}>
-                      {s.initials}
-                    </div>
+                    <Avatar seed={`p-${s.participant_id}`} initials={s.initials} colorClass={s.color} size={40} textClass="text-white text-sm font-bold" />
                     <div className="font-semibold text-slate-900 text-sm">{s.participant_name}</div>
                   </div>
                   <div className="text-slate-500 text-xs mt-2">Sesi #{s.session_number}</div>

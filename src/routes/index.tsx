@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { CheckCircle, Eye, EyeOff } from "lucide-react";
 import { DEMO_USERS } from "@/lib/mock-data";
 import { setUser, getUser, type DemoUser } from "@/lib/user-store";
+import { Avatar } from "@/components/Avatar";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
@@ -99,9 +100,7 @@ function Login() {
                 onClick={() => loginAs(u)}
                 className="w-full bg-white border border-slate-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-md transition-all flex items-center gap-3 text-left"
               >
-                <div className={`w-10 h-10 rounded-full ${u.avatar} text-white flex items-center justify-center font-semibold text-sm flex-shrink-0`}>
-                  {u.initials}
-                </div>
+                <Avatar seed={`user-${u.id}`} initials={u.initials} colorClass={u.avatar} size={40} textClass="text-white font-semibold text-sm" />
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-sm text-slate-900 truncate">{u.full_name}</div>
                   <div className="text-xs text-slate-500 truncate">{u.position}</div>
