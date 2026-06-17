@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Check, Lock, Plus, Building2, MapPin, Calendar, User } from "lucide-react";
 import { ACTIVE_CLASS } from "@/lib/mock-data";
+import { classCover } from "@/lib/dummy-images";
 
 export function ActiveClassCard() {
   const c = ACTIVE_CLASS;
@@ -9,14 +10,21 @@ export function ActiveClassCard() {
 
   return (
     <div className="bg-white rounded-xl shadow-sm overflow-hidden flex hover:shadow-md transition-shadow">
-      <div className={`w-48 flex-shrink-0 bg-gradient-to-br ${c.cover_color} p-5 flex flex-col justify-between`}>
-        <div className="text-white/60 text-xs font-semibold tracking-widest">ACE</div>
-        <div>
+      <div className={`w-48 flex-shrink-0 bg-gradient-to-br ${c.cover_color} p-5 flex flex-col justify-between relative overflow-hidden`}>
+        <img
+          src={classCover(c.id)}
+          alt={c.title}
+          className="absolute inset-0 w-full h-full object-cover opacity-55"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 to-blue-900/40" />
+        <div className="relative text-white/80 text-xs font-semibold tracking-widest">ACE</div>
+        <div className="relative">
           <div className="text-white text-2xl font-bold">{c.batch}</div>
-          <div className="text-white/70 text-sm">{c.client}</div>
+          <div className="text-white/80 text-sm">{c.client}</div>
         </div>
-        <div className="self-start">
-          <span className="bg-white/20 text-white text-xs rounded-full px-2 py-0.5">{c.duration}</span>
+        <div className="relative self-start">
+          <span className="bg-white/20 backdrop-blur-sm text-white text-xs rounded-full px-2 py-0.5">{c.duration}</span>
         </div>
       </div>
       <div className="flex-1 p-6">
@@ -110,9 +118,16 @@ export function LockedClassCard({
       onClick={onClick}
       className="bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
     >
-      <div className={`h-32 bg-gradient-to-br ${klass.cover_color} p-4 flex flex-col justify-end`}>
-        <div className="text-white font-bold text-base">{klass.title}</div>
-        <div className="text-white/70 text-xs">{klass.subtitle}</div>
+      <div className={`relative h-32 bg-gradient-to-br ${klass.cover_color} p-4 flex flex-col justify-end overflow-hidden`}>
+        <img
+          src={classCover(klass.id)}
+          alt={klass.title}
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/30 to-transparent" />
+        <div className="relative text-white font-bold text-base">{klass.title}</div>
+        <div className="relative text-white/80 text-xs">{klass.subtitle}</div>
       </div>
       <div className="p-4">
         <div className="flex gap-2 text-xs text-slate-500 mb-3">
