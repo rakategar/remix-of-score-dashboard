@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { type ReactNode } from "react";
 import { useStaff, setStaff } from "@/lib/internal-store";
+import { Avatar } from "@/components/Avatar";
 
 function NavItem({ to, icon: Icon, label, active }: { to: string; icon: any; label: string; active?: boolean }) {
   return (
@@ -57,9 +58,7 @@ export function InternalShell({ children, headerTitle = "Dashboard" }: { childre
           <div className="text-slate-400 text-xs">Internal Portal</div>
         </div>
         <div className="m-3 bg-slate-800 rounded-xl p-4 flex items-center gap-3">
-          <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold ${s.color}`}>
-            {s.initials}
-          </div>
+          <Avatar seed={`staff-${s.initials}`} initials={s.initials} colorClass={s.color} size={36} textClass="text-white text-sm font-bold" />
           <div className="min-w-0">
             <div className="text-white font-medium text-sm truncate">{s.full_name}</div>
             <div className="text-slate-400 text-xs truncate">{s.role_label}</div>

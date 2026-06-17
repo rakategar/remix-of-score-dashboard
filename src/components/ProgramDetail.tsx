@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { PROGRAM_DATA, PARTICIPANTS, EVALUATION_DATA, ORG_INSIGHT, REPORTS, MANAGER_DIRECT_REPORT_IDS, type Participant } from "@/lib/client-data";
 import { useClient } from "@/lib/client-store";
+import { Avatar } from "@/components/Avatar";
 
 export type DetailTab = "overview" | "participants" | "evaluation" | "insight" | "reports";
 
@@ -174,9 +175,14 @@ function OverviewTab() {
           <h3 className="font-semibold text-slate-900 mb-4">Fasilitator</h3>
           {PROGRAM_DATA.facilitators.map((f) => (
             <div key={f} className="flex items-center gap-3 mb-3 last:mb-0">
-              <div className="w-10 h-10 bg-blue-100 text-blue-600 font-medium rounded-xl flex items-center justify-center">
-                {f.split(" ").map((p) => p[0]).join("").slice(0, 2)}
-              </div>
+              <Avatar
+                seed={`fac-${f}`}
+                initials={f.split(" ").map((p) => p[0]).join("").slice(0, 2)}
+                colorClass="bg-blue-100"
+                size={40}
+                rounded="rounded-xl"
+                textClass="text-blue-600 font-medium text-sm"
+              />
               <div>
                 <div className="font-medium text-sm text-slate-900">{f}</div>
                 <div className="text-xs text-slate-500">Fasilitator Senior</div>
@@ -238,9 +244,13 @@ function ParticipantsTab({ role }: { role: string }) {
                 <td className="px-5 py-4 text-slate-400 text-sm text-center">{p.no}</td>
                 <td className="px-5 py-4">
                   <div className="flex items-center gap-3">
-                    <div className={`w-9 h-9 ${avatarColors[p.no - 1]} text-white text-xs font-bold rounded-full flex items-center justify-center`}>
-                      {p.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
-                    </div>
+                    <Avatar
+                      seed={`p-${p.id}`}
+                      initials={p.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
+                      colorClass={avatarColors[p.no - 1]}
+                      size={36}
+                      textClass="text-white text-xs font-bold"
+                    />
                     <span className="font-semibold text-slate-900 text-sm">{p.full_name}{p.role_model && <span className="text-amber-400 ml-1">★</span>}</span>
                   </div>
                 </td>

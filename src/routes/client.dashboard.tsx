@@ -3,6 +3,7 @@ import { ClientShell } from "@/components/ClientShell";
 import { useClient } from "@/lib/client-store";
 import { PROGRAM_DATA, PARTICIPANTS } from "@/lib/client-data";
 import { ArrowRight, ChevronRight, Download, Eye, Sparkles, Star } from "lucide-react";
+import { Avatar } from "@/components/Avatar";
 
 export const Route = createFileRoute("/client/dashboard")({
   component: () => <ClientShell><Dashboard /></ClientShell>,
@@ -102,9 +103,14 @@ function Dashboard() {
           <div className="flex flex-col gap-3">
             {roleModels.map((rm) => (
               <div key={rm.id} className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100 rounded-2xl p-4 flex items-center gap-4">
-                <div className="w-12 h-12 bg-green-500 text-white font-bold rounded-2xl flex items-center justify-center">
-                  {rm.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
-                </div>
+                <Avatar
+                  seed={`p-${rm.id}`}
+                  initials={rm.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
+                  colorClass="bg-green-500"
+                  size={48}
+                  rounded="rounded-2xl"
+                  textClass="text-white font-bold"
+                />
                 <div className="flex-1">
                   <div className="font-semibold text-slate-900">{rm.full_name}</div>
                   <div className="text-green-600 font-bold text-sm">{rm.score.toFixed(1)} / 100</div>

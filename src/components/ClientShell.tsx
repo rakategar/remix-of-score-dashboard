@@ -1,6 +1,7 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { Diamond, LogOut } from "lucide-react";
 import { useClient, setClient } from "@/lib/client-store";
+import { Avatar } from "@/components/Avatar";
 import type { ReactNode } from "react";
 
 export function ClientShell({ children }: { children: ReactNode }) {
@@ -53,9 +54,7 @@ export function ClientShell({ children }: { children: ReactNode }) {
             <span className="text-slate-500 text-sm">{client.organization}</span>
             <span className="w-px h-5 bg-slate-200" />
             <span className="font-medium text-slate-900 text-sm">{client.full_name}</span>
-            <div className={`w-8 h-8 ${client.color} text-white text-xs font-bold rounded-full flex items-center justify-center`}>
-              {client.initials}
-            </div>
+            <Avatar seed={`client-${client.id}`} initials={client.initials} colorClass={client.color} size={32} textClass="text-white text-xs font-bold" />
             <button
               onClick={() => {
                 setClient(null);

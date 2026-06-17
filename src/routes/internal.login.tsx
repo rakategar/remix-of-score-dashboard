@@ -4,6 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { DEMO_STAFF, ROLE_BADGE } from "@/lib/internal-data";
 import { setStaff } from "@/lib/internal-store";
+import { Avatar } from "@/components/Avatar";
 
 export const Route = createFileRoute("/internal/login")({
   component: InternalLogin,
@@ -98,9 +99,7 @@ function InternalLogin() {
                 onClick={() => handlePick(s)}
                 className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all text-left"
               >
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold ${s.color}`}>
-                  {s.initials}
-                </div>
+                <Avatar seed={`staff-${s.id}`} initials={s.initials} colorClass={s.color} size={40} textClass="text-white text-sm font-bold" />
                 <div className="flex-1 min-w-0">
                   <div className="font-medium text-sm text-slate-900">{s.full_name}</div>
                   <div className="text-slate-500 text-xs">{s.role_label}</div>

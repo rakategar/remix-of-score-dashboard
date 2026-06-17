@@ -3,6 +3,7 @@ import { ClientShell } from "@/components/ClientShell";
 import { useClient } from "@/lib/client-store";
 import { MANAGER_DIRECT_REPORT_IDS, MANAGER_FEEDBACK_ITEMS, PARTICIPANTS } from "@/lib/client-data";
 import { ClipboardList, Info, Star } from "lucide-react";
+import { Avatar } from "@/components/Avatar";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -47,9 +48,15 @@ function ManagerView() {
           return (
             <div key={p.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex hover:shadow-md transition-shadow">
               <div className="w-48 flex-shrink-0 border-r border-slate-100 p-5">
-                <div className={`w-12 h-12 ${colors[i]} text-white font-bold rounded-2xl flex items-center justify-center mb-3`}>
-                  {p.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
-                </div>
+                <Avatar
+                  seed={`p-${p.id}`}
+                  initials={p.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
+                  colorClass={colors[i]}
+                  size={48}
+                  rounded="rounded-2xl"
+                  textClass="text-white font-bold"
+                  className="mb-3"
+                />
                 <div className="font-bold text-slate-900 text-sm">{p.full_name}</div>
                 <div className={`text-2xl font-bold mt-2 ${sc}`}>{p.score}</div>
                 <span className={`${cat.c} rounded-full px-2.5 py-0.5 text-[11px] font-medium mt-2 inline-block`}>{cat.l}</span>
@@ -119,9 +126,13 @@ function FeedbackModal({ participant, onClose, onSubmit }: { participant: typeof
       <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-7 max-h-[90vh] overflow-y-auto">
         <h3 className="font-bold text-xl text-slate-900">Isi Manager Feedback</h3>
         <div className="flex items-center gap-2 mt-2 mb-5">
-          <div className="w-8 h-8 bg-blue-500 text-white font-bold rounded-full flex items-center justify-center text-xs">
-            {participant.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
-          </div>
+          <Avatar
+            seed={`p-${participant.id}`}
+            initials={participant.full_name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
+            colorClass="bg-blue-500"
+            size={32}
+            textClass="text-white font-bold text-xs"
+          />
           <span className="text-sm font-medium text-slate-700">{participant.full_name}</span>
         </div>
 
