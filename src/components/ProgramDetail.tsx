@@ -458,7 +458,7 @@ function ReportsTab({ role }: { role: string }) {
       )}
       <div className="flex flex-col gap-4">
         {REPORTS.map((r) => {
-          const allowed = r.access.includes(role);
+          const allowed = (r.access as readonly string[]).includes(role);
           const { bg, color, Icon } = iconFor(r.type);
           return (
             <div key={r.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex items-center gap-5 hover:shadow-md transition-shadow">
